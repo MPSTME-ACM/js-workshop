@@ -1,38 +1,126 @@
-/*
-    ALGORITHM: Simple Calculator
+class Calculator {
+  constructor(previousOperandTextElement, currentOperandTextElement) {
+    this.previousOperandTextElement = previousOperandTextElement
+    this.currentOperandTextElement = currentOperandTextElement
+    this.clear()
+  }
 
-    1.  SETUP:
-        - Get the display element (e.g., an <input> field).
-        - Get all the number buttons.
-        - Get all the operator buttons (+, -, *, /).
-        - Get the equals button.
-        - Get the clear button.
-        - Create variables to store the first operand, the second operand, and the current operation.
+  clear() {
+    this.currentOperand = ''
+    this.previousOperand = ''
+    this.operation = undefined
+  }
 
-    2.  EVENT LISTENERS:
-        - Loop through all number buttons and add a 'click' listener to each.
-        - Loop through all operator buttons and add a 'click' listener to each.
-        - Add a 'click' listener to the equals button.
-        - Add a 'click' listener to the clear button.
+  delete() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1)
+  }
 
-    3.  LOGIC FOR NUMBER CLICKS:
-        - When a number button is clicked, append its value to the string in the display.
+  appendNumber(number) {
+    if (number === '.' && this.currentOperand.includes('.')) return
+    this.currentOperand = this.currentOperand.toString() + number.toString()
+  }
 
-    4.  LOGIC FOR OPERATOR CLICKS:
-        - When an operator button is clicked:
-            - If there's a value in the display, store it as the 'first operand'.
-            - Store the operator that was clicked.
-            - Clear the display so the user can enter the second number.
+  chooseOperation(operation) {
+    if (this.currentOperand === '') return
+    if (this.previousOperand !== '') {
+      this.compute()
+    }
+    this.operation = operation
+    this.previousOperand = this.currentOperand
+    this.currentOperand = ''
+  }
 
-    5.  LOGIC FOR EQUALS CLICK:
-        - When the equals button is clicked:
-            - Store the current value in the display as the 'second operand'.
-            - Based on the stored operator, perform the calculation between the 'first operand' and 'second operand'.
-            - Display the result in the display element.
-            - Reset the stored operands and operator for the next calculation.
+  compute() {
+    let computation
+    const prev = parseFloat(this.previousOperand)
+    const current = parseFloat(this.currentOperand)
+    if (isNaN(prev) || isNaN(current)) return
+    switch (this.operation) {
+      case '+':
+        computation = prev + current
+        break
+      case '-':
+        computation = prev - current
+        break
+      case '*':
+        computation = prev * current
+        break
+      case '÷':
+        computation = prev / current
+        break
+      default:
+        return
+    }
+    this.currentOperand = computation
+    this.operation = undefined
+    this.previousOperand = ''
+  }
 
-    6.  LOGIC FOR CLEAR CLICK:
-        - When the clear button is clicked:
-            - Clear the display.
-            - Reset all stored variables (first operand, second operand, operator).
-*/
+  getDisplayNumber(number) {
+    const stringNumber = number.toString()
+    const integerDigits = parseFloat(stringNumber.split('.')[0])
+    const decimalDigits = stringNumber.split('.')[1]
+    let integerDisplay
+    if (isNaN(integerDigits)) {
+      integerDisplay = ''
+    } else {
+      integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
+    }
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`
+    } else {
+      return integerDisplay
+    }
+  }
+
+  updateDisplay() {
+    this.currentOperandTextElement.innerText =
+      this.getDisplayNumber(this.currentOperand)
+    if (this.operation != null) {
+      this.previousOperandTextElement.innerText =
+        `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+    } else {
+      this.previousOperandTextElement.innerText = ''
+    }
+  }
+}
+
+
+const numberButtons = document.querySelectorAll('[data-number]')
+const operationButtons = document.querySelectorAll('[data-operation]')
+const equalsButton = document.querySelector('[data-equals]')
+const deleteButton = document.querySelector('[data-delete]')
+const allClearButton = document.querySelector('[data-all-clear]')
+const previousOperandTextElement = document.querySelector('[data-previous-operand]')
+const currentOperandTextElement = document.querySelector('[data-current-operand]')
+
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
+
+numberButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.appendNumber(button.innerText)
+    calculator.updateDisplay()
+  })
+})
+
+operationButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.chooseOperation(button.innerText)
+    calculator.updateDisplay()
+  })
+})
+
+equalsButton.addEventListener('click', button => {
+  calculator.compute()
+  calculator.updateDisplay()
+})
+
+allClearButton.addEventListener('click', button => {
+  calculator.clear()
+  calculator.updateDisplay()
+})
+
+deleteButton.addEventListener('click', button => {
+  calculator.delete()
+  calculator.updateDisplay()
+})
