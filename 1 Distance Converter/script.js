@@ -27,3 +27,40 @@
             console.log("500 cm to m is:", convertDistance(500, 'cm', 'm')); // Expected output: 5
             console.log("2500 m to km is:", convertDistance(2500, 'm', 'km')); // Expected output: 2.5
 */
+function convertDistance(value, fromUnit, toUnit) {
+      let baseM = 0;  
+      if (fromUnit === 'km') {
+          baseM = value * 1000;
+      } else if (fromUnit === 'cm') {
+          baseM = value / 100;
+      } else if (fromUnit === 'm') {
+          baseM = value;
+      }
+
+      let result = 0;
+      if (toUnit === 'km') {
+          result = baseM / 1000;
+      } else if (toUnit === 'cm') {
+          result = baseM * 100;
+      } else if (toUnit === 'm') {
+          result = baseM;
+      } 
+      return result;
+    }
+
+    function conversion() {
+      const value = parseFloat(document.getElementById("value").value);
+      const fromUnit = document.getElementById("fromUnit").value;
+      const toUnit = document.getElementById("toUnit").value;
+      const resultDiv = document.getElementById("result");
+
+      if (isNaN(value)) {
+        resultDiv.textContent = "⚠️ Please enter a valid number.";
+        return;
+      }
+
+  
+        const result = convertDistance(value, fromUnit, toUnit);
+       resultDiv.textContent = value + " " + fromUnit + " = " + result + " " + toUnit;
+
+    }

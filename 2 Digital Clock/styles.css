@@ -1,0 +1,51 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #d8bfd8, #fda062, #e6e6fa);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glassmorphism container */
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 40px 60px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+
+
+    #clock {
+      font-size: 4rem;
+      color: #fff;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.7),
+                   0 0 30px rgba(218, 112, 214, 0.5);
+      letter-spacing: 3px;
+    }
+
+    
+    .subtitle {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 2px;
+    }
