@@ -34,4 +34,5 @@ function updateTime() {
     clockElement.textContent = currentTime;
 }
 
-setInterval(updateTime(), 1000);
+updateTime();
+setInterval(updateTime, 1000);

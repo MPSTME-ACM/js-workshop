@@ -1,39 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clock</title>
-    <script src="script.js" defer></script>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #333;
-            color: white;
-            font-family: 'Arial', sans-serif;
-        }
-        .clock {
-            text-align: center;
-        }
-        #time {
-            font-size: 60px;
-            margin-bottom: 10px;
-        }
-        #date {
-            font-size: 24px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    
-    <div class="clock">
-        <div id="time"></div>
-        <div id="date"></div>
-    </div>
-    
-
+  <div class="container">
+    <div id="clock"></div>
+    <div class="subtitle">Digital Clock</div>
+  </div>
 </body>
 </html>
