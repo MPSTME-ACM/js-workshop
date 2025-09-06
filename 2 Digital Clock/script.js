@@ -16,3 +16,19 @@
         - Call the time-updating function once immediately to show the time on page load.
         - Use `setInterval` to automatically call the time-updating function every 1000 milliseconds (1 second).
 */
+
+let hrs = document.getElementById('hrs') /* Calling all the refs 
+let min = document.getElementById('min')    stored in HTML element*/
+let sec = document.getElementById('sec')
+
+setInterval(()=>{
+    let currentTime = new Date(); //new date gives current date and time
+hrs.innerHTML = (currentTime.getHours()<10?"0":'') + currentTime.getHours() 
+min.innerHTML = (currentTime.getMinutes()<10?"0":'') + currentTime.getMinutes();
+sec.innerHTML = (currentTime.getSeconds()<10?"0":'') + currentTime.getSeconds();
+
+},1000) 
+
+
+
+
