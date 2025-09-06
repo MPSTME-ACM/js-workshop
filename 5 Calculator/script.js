@@ -36,3 +36,4 @@
             - Clear the display.
             - Reset all stored variables (first operand, second operand, operator).
 */
+
