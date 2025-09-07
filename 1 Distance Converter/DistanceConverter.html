@@ -1,0 +1,57 @@
+<html>
+<head></head>
+<body>
+	<script>
+		function convertDistance(value,fromUnit,toUnit)
+		{
+			var base_uni=0;
+
+			//converting any input first into meters for simplicity sake
+			if (fromUnit === 'km') 
+			{
+                base_uni = value * 1000;
+            } 
+            else if (fromUnit === 'cm') 
+            {
+                base_uni = value / 100;
+            }
+            else if (fromUnit === 'm') 
+            {
+                base_uni = value;
+            } 
+            else 
+            {
+                return "Invalid fromUnit";
+            }
+
+
+            let result;
+
+            // now converting into the given toUnit
+            if (toUnit === 'km') 
+            {
+                result = base_uni / 1000;
+            } 
+            else if (toUnit === 'cm')
+            {
+                result = base_uni * 100;
+            } 
+            else if (toUnit === 'm') 
+            {
+                result = base_uni;
+            } 
+            else 
+            {
+                return "Invalid toUnit";
+            }
+
+            return result;
+		}
+
+		// Test cases
+        console.log("10 km to m is:", convertDistance(10, 'km', 'm'));      
+        console.log("500 cm to m is:", convertDistance(500, 'cm', 'm'));   
+        console.log("2500 m to km is:", convertDistance(2500, 'm', 'km')); 
+	</script>
+</body>
+</html>
