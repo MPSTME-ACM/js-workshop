@@ -14,3 +14,17 @@
         - Prepend a '#' to the start of the hex string to create a valid CSS color code (e.g., '#1a2b3c').
         - Set the `backgroundColor` style of the `body` element to this new random color string.
 */
+
+let button = document.getElementById('changeColorBtn');
+
+// Add an event listener to the button
+changeColorBtn.addEventListener('click', function() {
+    let random = Math.floor(Math.random() * 16777215);
+    let hexadecimal = random.toString(16);
+    while (hexadecimal.length<6){
+        hexadecimal = '0' + hexadecimal;
+    }
+    let color = '#' + hexadecimal;
+    document.body.style.backgroundColor = color;
+    console.log("Color Changed!");        
+});
