@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Digital Clock</title>
+  <style>
+    #clock 
+    {
+      font-size: 50px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 20%;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="clock">00:00:00 AM</h1>
+
+  <script>
+    let clock = document.getElementById("clock");  
+
+
+    function showTime() 
+    {
+      let now = new Date();       
+      let h = now.getHours();     
+      let m = now.getMinutes();   
+      let s = now.getSeconds();   
+      let half="";                //am or pm
+
+       if(h>12)
+      {
+        h-=12;
+        half="PM";
+      }
+      else
+      {
+        half="AM"
+      }
+
+      if (h < 10) h = "0" + h;
+      if (m < 10) m = "0" + m;
+      if (s < 10) s = "0" + s;
+
+      clock.innerHTML = h + ":" + m + ":" + s + " " + half;  // display the time
+    }
+
+    showTime();                   
+    setInterval(showTime, 1000);  
+  </script>
+</body>
+</html>

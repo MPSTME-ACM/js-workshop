@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+</head>
+<body>
+  <h2>My To-Do List</h2>
+  
+  
+  <input type="text" id="taskInput" placeholder="Enter a new task">
+  <button id="addTaskBtn">Add Task</button>
+  
+  
+  <ul id="taskList"></ul>
+
+  
+  <script>
+    const taskInput = document.getElementById("taskInput"); //string to take input 
+    const addTaskBtn = document.getElementById("addTaskBtn"); //
+    const taskList = document.getElementById("taskList");
+
+    // event listner 
+    addTaskBtn.addEventListener("click", function ()
+     {
+
+      const taskText = taskInput.value; 
+
+      
+
+      // adding new item
+      const li = document.createElement("li");
+      li.textContent = taskText + " ";
+
+      // Create remove button
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "Remove";
+
+      // Add event listener for remove button
+      removeBtn.addEventListener("click", function () 
+      {
+        taskList.removeChild(li);
+      });
+
+      // Append remove button to li
+      li.appendChild(removeBtn);
+
+      // Append li to task list
+      taskList.appendChild(li);
+
+      // Clear input field
+      taskInput.value = "";
+    });
+  </script>
+</body>
+</html>
