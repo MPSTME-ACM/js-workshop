@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Random Color Changer</title>
+  <style>        
+      button { padding: 8px; } 
+  </style>
+</head>
+<body>
+  <button id="changeColor">Change Color</button>
+  <p id="colorCode">#ffffff</p>
+
+  <script>
+    const btn = document.getElementById('changeColor');
+    const colorCode = document.getElementById('colorCode');
+
+    function randomColor() 
+    {
+      const n = Math.floor(Math.random() * 16777216); // 0 to FFFFFF
+      const hex = n.toString(16).padStart(6, '0');
+      return '#' + hex;
+    }
+
+    function changeColor() {
+      const hex = randomColor();
+      document.body.style.backgroundColor = hex;
+      colorCode.textContent = hex;
+    }
+
+    btn.addEventListener('click', changeColor);
+    changeColor(); // set an initial random color
+  </script>
+</body>
+</html>
