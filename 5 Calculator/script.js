@@ -36,3 +36,43 @@
             - Clear the display.
             - Reset all stored variables (first operand, second operand, operator).
 */
+
+
+const display = document.getElementById("display");
+const numButtons = document.querySelectorAll(".num");
+const opButtons = document.querySelectorAll(".op");
+const equalsBtn = document.getElementById("equals");
+const clearBtn = document.getElementById("clear");
+
+
+numButtons.forEach(button => {
+  button.addEventListener("click", function () {
+    display.value += button.textContent;
+  });
+});
+
+
+opButtons.forEach(button => {
+  button.addEventListener("click", function () {
+    // Prevent adding two operators in a row
+    const lastChar = display.value.slice(-1);
+    if ("+-*/".includes(lastChar)) return;
+
+    display.value += button.textContent;
+  });
+});
+
+
+equalsBtn.addEventListener("click", function () {
+  try {
+    display.value = eval(display.value); // evaluate the full expression
+  } catch {
+    display.value = "Error";
+  }
+});
+
+
+clearBtn.addEventListener("click", function () {
+  display.value = "";
+});
+

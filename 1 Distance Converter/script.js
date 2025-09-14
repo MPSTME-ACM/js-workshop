@@ -11,12 +11,12 @@
             - If it's 'km', multiply the `value` by 1000 to get meters and store it in your base unit variable.
             - If it's 'cm', divide the `value` by 100 to get meters and store it.
             - If it's 'm', the value is already in meters, so just store it.
-        - Create a final result variable.
+        - Create a final res variable.
         - Use another `if/else if` or `switch` statement to check the `toUnit`:
             - If it's 'km', divide the base unit value by 1000.
             - If it's 'cm', multiply the base unit value by 100.
-            - If it's 'm', the result is simply the base unit value.
-        - Return the final calculated result from the function.
+            - If it's 'm', the res is simply the base unit value.
+        - Return the final calculated res from the function.
 
     3.  TESTING THE FUNCTION:
         - To see if your function works, call it with different values and log the output.
@@ -27,3 +27,33 @@
             console.log("500 cm to m is:", convertDistance(500, 'cm', 'm')); // Expected output: 5
             console.log("2500 m to km is:", convertDistance(2500, 'm', 'km')); // Expected output: 2.5
 */
+
+function convertDistance(value, fromUnit, toUnit) {
+  var m = 0;
+
+  if (fromUnit === 'km') {
+    m = value * 1000;
+  } else if (fromUnit === 'cm') {
+    m = value / 100;
+  } else if (fromUnit === 'm') {
+    m = value;
+  }
+
+  var res = 0;
+
+  if (toUnit === 'km') {
+    res = m / 1000;
+  } else if (toUnit === 'cm') {
+    res = m * 100;
+  } else if (toUnit === 'm') {
+    res = m;
+  }
+
+  return res;
+}
+
+console.log("10 km to m is:", convertDistance(10, 'km', 'm'));
+console.log("500 cm to m is:", convertDistance(500, 'cm', 'm'));
+console.log("2500 m to km is:", convertDistance(2500, 'm', 'km'));
+
+
