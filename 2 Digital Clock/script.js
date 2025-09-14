@@ -16,3 +16,17 @@
         - Call the time-updating function once immediately to show the time on page load.
         - Use `setInterval` to automatically call the time-updating function every 1000 milliseconds (1 second).
 */
+function timeUpdater() {
+    newdate = new Date();
+    hours = newdate.getHours();
+    minutes = newdate.getMinutes();
+    seconds = newdate.getSeconds();
+    if (hours < 10) { hours = "0" + hours; }
+    if (minutes < 10) { minutes = "0" + minutes; }   
+    if (seconds < 10) { seconds = "0" + seconds; }
+    document.getElementById('time').textContent = hours + ":" + minutes + ":" + seconds;
+}
+timeUpdater(); 
+setInterval(timeUpdater, 1000); 
+
+
