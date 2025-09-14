@@ -27,3 +27,37 @@
             console.log("500 cm to m is:", convertDistance(500, 'cm', 'm')); // Expected output: 5
             console.log("2500 m to km is:", convertDistance(2500, 'm', 'km')); // Expected output: 2.5
 */
+function convertDistance(value,fromUnit,toUnit)
+{
+    let d=0;
+    if (fromUnit == "km")
+    {
+        d = value * 1000; 
+    } 
+    else if (fromUnit =="cm")
+    {
+        d = value / 100;
+    } 
+    else 
+    {
+        d = value;
+    }
+    let finalResult=0;
+    if (toUnit === "km")
+    {
+        finalResult = d / 1000;
+    } 
+    else if (toUnit == "cm") 
+    {
+        finalResult = d * 100;
+    } 
+    else 
+    {
+        finalResult = d; 
+    }
+    return finalResult;
+
+}
+console.log("10 km to m is:", convertDistance(10, 'km', 'm')); 
+console.log("500 cm to m is:", convertDistance(500, "cm", "m"));
+console.log("2500 m to km is:", convertDistance(2500, 'm', 'km'));
