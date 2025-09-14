@@ -21,3 +21,41 @@
             - Append the new `<li>` to the task list (`<ul>`).
             - Clear the text in the input field.
 */
+
+
+        const taskInput = document.getElementById('taskInput');
+        const addTaskButton = document.getElementById('addTaskButton');
+        const taskList = document.getElementById('taskList');
+
+
+        addTaskButton.addEventListener('click', function() {
+     
+            const taskText = taskInput.value.trim();
+
+       
+            if (taskText === '') {
+                return; 
+            }
+
+     
+            const li = document.createElement('li');
+            li.textContent = taskText;
+
+       
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.className = 'remove-btn';
+
+        
+            removeButton.addEventListener('click', function() {
+                taskList.removeChild(li);
+            });
+
+
+            li.appendChild(removeButton);
+
+    
+            taskList.appendChild(li);
+
+            taskInput.value = '';
+        });
