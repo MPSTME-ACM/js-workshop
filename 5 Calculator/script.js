@@ -36,3 +36,81 @@
             - Clear the display.
             - Reset all stored variables (first operand, second operand, operator).
 */
+
+
+const display = document.getElementById('display');
+const numberButtons = document.querySelectorAll('#numbers button');
+const operatorButtons = document.querySelectorAll('#operators button:not(#clear)');
+const equalsButton = document.querySelector('#numbers button:nth-child(12)');
+const clearButton = document.getElementById('clear');
+
+let firstOperand = null;
+let secondOperand = null;
+let currentOperation = null;
+
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const value = button.textContent;
+        if (value === '=') {
+            handleEquals();
+        } else {
+            handleNumber(value);
+        }
+    });
+});
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        handleOperator(button.textContent);
+    });
+});
+
+clearButton.addEventListener('click', () => {
+    display.value = '';
+    firstOperand = null;
+    secondOperand = null;
+    currentOperation = null;
+});
+
+
+function handleNumber(value) {
+    display.value += value;
+}
+
+function handleOperator(operator) {
+    if (display.value === '') return;
+    firstOperand = parseFloat(display.value);
+    currentOperation = operator;
+    display.value = '';
+}
+
+
+function handleEquals() {
+    if (currentOperation === null || display.value === '') return;
+    secondOperand = parseFloat(display.value);
+
+    let result;
+    switch (currentOperation) {
+        case '+':
+            result = firstOperand + secondOperand;
+            break;
+        case '-':
+            result = firstOperand - secondOperand;
+            break;
+        case '*':
+            result = firstOperand * secondOperand;
+            break;
+        case '/':
+            if (secondOperand === 0) {
+                result = 'Error';
+            } else {
+                result = firstOperand / secondOperand;
+            }
+            break;
+    }
+    display.value = result;
+    firstOperand = null;
+    secondOperand = null;
+    currentOperation = null;
+}
