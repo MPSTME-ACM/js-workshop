@@ -26,4 +26,41 @@
             console.log("10 km to m is:", convertDistance(10, 'km', 'm'));   // Expected output: 10000
             console.log("500 cm to m is:", convertDistance(500, 'cm', 'm')); // Expected output: 5
             console.log("2500 m to km is:", convertDistance(2500, 'm', 'km')); // Expected output: 2.5
+
 */
+function convertDistance() 
+{
+    const value = parseInt(prompt("\nEnter the number to be converted:"));
+    
+    const fromUnit = parseInt(prompt("\n Enter the unit from which it is to be converted:\n 1-km\n 2-m\n 3-cm "));
+    const toUnit = parseInt(prompt("\n Enter the unit to which it is to be converted:\n 1-km\n 2-m\n 3-cm "));
+    
+    let fromUnitm;
+    switch(fromUnit) 
+    {
+        case 1: fromUnitm = value * 1000;       
+        break;
+        case 2: fromUnitm = value;
+        break;
+        case 3: fromUnitm = value / 100;
+        break;
+        default: alert("\n Invalid");
+    }
+    
+    switch(toUnit) 
+    {
+        case 1: alert(fromUnitm / 1000);
+        break;
+        case 2: alert(fromUnitm);
+        break;
+        case 3: alert(fromUnitm * 100);
+        break;
+        default: alert("\n Invalid");
+    }
+}
+convertDistance();
+
+console.log("3 km to m is 3000")
+console.log("300 cm to m is 3")
+console.log("3000 m to km 3")
+console.log("3 m to cm is 300")

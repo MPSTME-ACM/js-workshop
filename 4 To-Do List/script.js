@@ -21,3 +21,16 @@
             - Append the new `<li>` to the task list (`<ul>`).
             - Clear the text in the input field.
 */
+
+
+
+const button = document.getElementById("colorBtn");
+const body = document.body;
+
+
+button.addEventListener("click", () => {
+    
+    const randomNumber = Math.floor(Math.random() * 16777215);
+    const randomColor = "#" + randomNumber.toString(16).padStart(6, '0');
+    body.style.backgroundColor = randomColor;
+});

@@ -36,3 +36,74 @@
             - Clear the display.
             - Reset all stored variables (first operand, second operand, operator).
 */
+
+const display = document.getElementById("display");
+const numberButtons = document.querySelectorAll(".number");
+const operatorButtons = document.querySelectorAll(".operator");
+const equalsButton = document.querySelector(".equals");
+const clearButton = document.querySelector(".clear");
+
+let firstOperand = "";
+let secondOperand = "";
+let currentOperator = "";
+let isSecondOperand = false;
+
+
+numberButtons.forEach(button =>
+     {
+    button.addEventListener("click", () => 
+        {
+        display.value += button.textContent;
+        });
+    });
+
+operatorButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        if (display.value !== "")
+             {
+            firstOperand = display.value;
+            currentOperator = button.textContent;
+            display.value = "";
+            isSecondOperand = true;
+             }
+    });
+});
+
+equalsButton.addEventListener("click", () => {
+    if (isSecondOperand && display.value !== "") {
+        secondOperand = display.value;
+        let result;
+
+        switch (currentOperator) {
+            case "+":
+                result = parseFloat(firstOperand) + parseFloat(secondOperand);
+                break;
+            case "-":
+                result = parseFloat(firstOperand) - parseFloat(secondOperand);
+                break;
+            case "*":
+                result = parseFloat(firstOperand) * parseFloat(secondOperand);
+                break;
+            case "/":
+                result = parseFloat(secondOperand) !== 0
+                    ? parseFloat(firstOperand) / parseFloat(secondOperand)
+                    : "Error";
+                break;
+        }
+
+        display.value = result;
+        firstOperand = "";
+        secondOperand = "";
+        currentOperator = "";
+        isSecondOperand = false;
+    }
+});
+
+clearButton.addEventListener("click", () => {
+    display.value = "";
+    firstOperand = "";
+    secondOperand = "";
+    currentOperator = "";
+    isSecondOperand = false;
+});
+

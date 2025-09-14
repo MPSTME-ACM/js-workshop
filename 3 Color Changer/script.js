@@ -14,3 +14,14 @@
         - Prepend a '#' to the start of the hex string to create a valid CSS color code (e.g., '#1a2b3c').
         - Set the `backgroundColor` style of the `body` element to this new random color string.
 */
+
+const button = document.getElementById("colorButton");
+const body = document.body;
+
+button.addEventListener("click", function ()
+ {
+    const randomNumber = Math.floor(Math.random() * 16777215); 
+    const hexColor = "#" + randomNumber.toString(16).padStart(6, '0');
+    body.style.backgroundColor = hexColor;
+}
+);
