@@ -36,3 +36,45 @@
             - Clear the display.
             - Reset all stored variables (first operand, second operand, operator).
 */
+
+let operand1 = document.getElementById("operand-1");
+let operand2 = document.getElementById("operand-2");
+let operation = document.getElementById("operation");
+let clear = document.getElementById("clear");
+
+function calculator() {
+    let num1 = Number(operand1.value);
+    let num2 = Number(operand2.value);
+    if (isNaN(num1) || isNaN(num2)) {
+        alert("Enter a valid numebr!");
+        return;
+    }
+    let op = operation.value;
+    let res = 0;
+    if (op === "+") {
+        res = num1 + num2;
+    } else if (op === "-") {
+        res = num1 - num2;
+    } else if (op === "*") {
+        res = num1 * num2;
+    } else if (op === "/") {
+        if(num2 === 0) {
+            alert("Cannot divide by 0");
+            return;
+        }
+        res = num1 / num2;
+    } 
+    return res.toFixed(3);
+}
+
+let calculate = document.getElementById("equals");
+calculate.onclick = function () {
+    let result = calculator();
+    document.getElementById("result").textContent = result;
+}
+
+clear.onclick = function () {
+    operand1.value = "";
+    operand2.value = "";
+    operation.value = "+";
+}
