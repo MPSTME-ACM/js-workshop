@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Color Changer</title>
+</head>
+<body bgcolor="white">
+  <h1 align="center">Random Color Changer</h1>
+  <center>
+    <button onclick="changeColor()">Change Background</button>
+  </center>
+
+  <script language="javascript">
+    function changeColor() {
+      
+      var randomNumber = Math.floor(Math.random() * 16777215);
+
+      
+      var randomColor = "#" + randomNumber.toString(16);
+
+      
+      document.body.style.backgroundColor = randomColor;
+    }
+  </script>
+</body>
+</html>
