@@ -36,3 +36,51 @@
             - Clear the display.
             - Reset all stored variables (first operand, second operand, operator).
 */
+const display = document.getElementById('display');
+const numberButtons = document.querySelectorAll('.number');
+const operatorButtons = document.querySelectorAll('.operator');
+const equalsButton = document.getElementById('equals');
+const clearButton = document.getElementById('clear');
+
+function calculate() {
+    let firstOperand = Number(firstOperand.value);
+    let secondOperand = Number(secondOperand.value);
+    if (isNaN(firstOperand) || isNaN(secondOperand)) {
+        alert("Number not valid");
+        return;
+    }
+    let currentOperator = operatorButtons.value;
+    let result = 0;
+    switch (currentOperator) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            if (num2 === 0) {
+                result = "Error: Division by zero";
+            } else {
+                result = num1 / num2;
+            }
+            break;
+        default:
+            return;
+    }
+
+    let calculate = document.getElementById("equals");
+    calculate.onclick = function() {
+        let result = calculate();
+        document.getElementById("result").textContent = result;
+    }
+
+    clear.onclick = function() {
+        firstOperand.value = "";
+        secondOperand.value = "";
+        operator.value = "+";
+    }
+}
