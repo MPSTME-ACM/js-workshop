@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title>Distance Converter</title>
+</head>
+<body>
+    <h1>Distance Converter</h1>
+<script>
+function convertDistance(value, fromUnit, toUnit)
+
+{
+    let meters=0;
+
+    if(fromUnit=="km")
+    {
+        meters=value*1000;
+    }
+    else if(fromUnit=="cm")
+    {
+        meters=value/100;
+    }
+    else  if(fromUnit=="m")
+    {
+        meters=value;
+    }
+    else
+    {
+        return "Invalid Unit!";
+    }
+
+    let result=0;
+
+    if(toUnit=="km")
+    {
+        result=meters/1000;
+    }
+    else if(toUnit=="cm")
+    {
+        result=meters*100;
+    }
+    else  if(toUnit=="m")
+    {
+        result=meters;
+    }
+    else
+    {
+        return "Invalid Unit!";
+    }
+
+    return result;
+
+}
+
+</script>
+</body>
+</html>
