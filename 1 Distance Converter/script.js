@@ -1,5 +1,5 @@
 /*
-    ALGORITHM: Distance Converter
+           console.ALGORITHM: Distance Converter
 
     1.  DEFINE THE FUNCTION:
         - Create a function named `convertDistance`.
@@ -25,5 +25,30 @@
         - Example tests:
             console.log("10 km to m is:", convertDistance(10, 'km', 'm'));   // Expected output: 10000
             console.log("500 cm to m is:", convertDistance(500, 'cm', 'm')); // Expected output: 5
-            console.log("2500 m to km is:", convertDistance(2500, 'm', 'km')); // Expected output: 2.5
+     log("2500 m to km is:", convertDistance(2500, 'm', 'km')); // Expected output: 2.5
 */
+function convertDistance(value, fromUnit, toUnit) {
+    var base = 0;
+    if (fromUnit == 'Km') {
+        var base = value * 1000;
+    } else if (fromUnit == 'cm') {
+        var base = value / 100;
+    } else if (fromUnit == 'm') {
+        var base = value;
+    } else {
+        var base = null;
+    }
+    var finalresult = 0;
+    if (toUnit == 'Km') {
+        var base = value / 1000;
+    } else if (toUnit == 'cm') {
+        var base = value * 100;
+
+    } else if (toUnit == 'm') {
+        var base = value;
+    } else {
+        var base = null;
+    }
+    return finalresult;
+}
+console.log(convertDistance(10, 'km', 'm'));
