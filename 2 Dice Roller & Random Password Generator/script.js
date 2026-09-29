@@ -34,3 +34,86 @@
 */
 
 // WRITE YOUR CODE BELOW:
+
+// PART 1: Dice Roller
+
+const numOfDice = document.getElementById("numOfDice");
+const rollBtn = document.getElementById("rollBtn");
+const diceResult = document.getElementById("diceResult");
+const diceImages = document.getElementById("diceImages");
+
+rollBtn.onclick = function() {
+    const num = Number(numOfDice.value);
+    const values = [];
+    const images = [];
+
+    for (let i = 0; i < num; i++) {
+        const val = Math.floor(Math.random() * 6) + 1;
+        values.push(val);
+        // Uses dice face images or falls back cleanly
+        images.push('<img src="https://assets.dryicons.com/uploads/icon/svg/771' + (val - 1) + '/dice.svg" width="50" style="margin: 5px;">');
+    }
+
+    diceResult.textContent = "Dice: " + values.join(", ");
+    diceImages.innerHTML = images.join("");
+}
+
+// PART 2: Random Password Generator
+
+const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const numberChars = "0123456789";
+const symbolChars = "!@#$%^&*()_+-=";
+
+function generatePassword(length, includeLower, includeUpper, includeNumbers, includeSymbols) {
+    let allowedChars = "";
+    let password = "";
+
+    if (includeLower) {
+        allowedChars += lowercaseChars;
+    }
+    if (includeUpper) {
+        allowedChars += uppercaseChars;
+    }
+    if (includeNumbers) {
+        allowedChars += numberChars;
+    }
+    if (includeSymbols) {
+        allowedChars += symbolChars;
+    }
+
+    if (length <= 0) {
+        return "Password length must be at least 1";
+    }
+    if (allowedChars.length === 0) {
+        return "At least 1 set of characters must be selected";
+    }
+
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * allowedChars.length);
+        password += allowedChars[randomIndex];
+    }
+
+    return password;
+}
+
+// Hook up generator to buttons and display
+const passLength = document.getElementById("passLength");
+const incLower = document.getElementById("incLower");
+const incUpper = document.getElementById("incUpper");
+const incNumbers = document.getElementById("incNumbers");
+const incSymbols = document.getElementById("incSymbols");
+const genPassBtn = document.getElementById("genPassBtn");
+const passResult = document.getElementById("passResult");
+
+genPassBtn.onclick = function() {
+    const length = Number(passLength.value);
+    const result = generatePassword(
+        length,
+        incLower.checked,
+        incUpper.checked,
+        incNumbers.checked,
+        incSymbols.checked
+    );
+    passResult.textContent = result;
+}
