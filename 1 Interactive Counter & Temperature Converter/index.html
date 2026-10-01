@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACM Assignment</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 8px 16px; margin: 5px; font-size: 16px; cursor: pointer; }
+        #countLabel { font-size: 40px; font-weight: bold; display: block; margin: 15px 0; }
+        .section { margin-bottom: 50px; }
+    </style>
+</head>
+<body>
+
+    <!-- PART 1: Counter -->
+    <div class="section">
+        <h2>Number Counter</h2>
+        <span id="countLabel">0</span>
+        <button id="decreaseBtn">Decrease</button>
+        <button id="resetBtn">Reset</button>
+        <button id="increaseBtn">Increase</button>
+    </div>
+
+    <!-- PART 2: Temperature Converter -->
+    <div class="section">
+        <h2>Temperature Converter</h2>
+        <input type="number" id="textBox" placeholder="Enter temp">
+        <br><br>
+        <input type="radio" id="toFahrenheit" name="unit">
+        <label for="toFahrenheit">Celsius ➔ Fahrenheit</label>
+        <br>
+        <input type="radio" id="toCelsius" name="unit">
+        <label for="toCelsius">Fahrenheit ➔ Celsius</label>
+        <br><br>
+        <button id="submitBtn">Submit</button>
+        <p id="result"></p>
+    </div>
+
+    
